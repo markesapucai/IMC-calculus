@@ -1,0 +1,44 @@
+:root {
+    --primary-color: rgb(17, 86, 102)
+}
+* {
+    box-sizing: border-box;
+    outline: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;   
+}
+h1 {
+    font-weight: 700;
+}
+.container {
+    border-radius: 8px;
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;  
+    
+    padding: 24px;
+}
+.info {
+    display: flex;
+    gap: 30%;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    width: 80vh;
+    gap: 10px;
+}
+button { 
+    background-color: var(--primary-color);
+    color: #fff;
+}
