@@ -1,0 +1,10 @@
+{
+  "name": "BMI-calculator",
+  "version": "1.0.0",
+  "description": "A simple Body Mass Index (BMI) calculator application in JavaScript. Calculate your BMI and determine your health status based on your weight and height.",
+  "main": "index.js",
+  "repository": "https://github.com/markesapucai/IMC-calculus.git",
+  "author": "Mark Leite <marktobusiness113@gmail.com>",
+  "license": "MIT",
+  "private": false
+}

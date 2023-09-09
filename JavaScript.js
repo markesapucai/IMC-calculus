@@ -19,34 +19,21 @@ const calcular = () => {
     }    
     const imc = calculo(peso, altura).toFixed(2);
     //calculo nivel
-    let nivel;
-    switch (true) {
-        case (imc <= 18.75):
-            nivel = vetor[0]
-            break;
-        case (imc <= 24.9):
-            nivel = vetor[1]
-            break;
-        case (imc <= 29.9):
-            nivel = vetor[2]
-            break;
-        case (imc <= 34.9):
-            nivel = vetor[3]
-            break;
-        case (imc <= 39.9):
-            nivel = vetor[4]
-            break;
-        case (imc >= 40):
-            nivel = vetor[5]
-            break;
-        default:
-            break
+    const nivel = (imc, vetor) => {
+        for(let cont = 0; cont < vetor.length ; cont++){
+            if (imc <= (18.75 + cont * 5)) {
+                return vetor[cont]
+            }
+        } 
+        return vetor[vetor.length - 1];
     }
+    const situacao = nivel(imc, vetor);
+
     //coletar e montar resposta
     const setResultado = (x, y) => {
         const res = document.querySelector('.res')
         res.innerHTML = '';
         res.innerHTML += `O seu IMC é ${x} (${y}).`
     }
-    setResultado(imc, nivel)
+    setResultado(imc, situacao)
 }   
