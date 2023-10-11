@@ -1,0 +1,32 @@
+@mixin flexCenter() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    @include flexCenter();
+    height: 100vh;
+
+    .container {
+        @include flexCenter();
+        flex-direction: column;
+        border: 1px saddlebrown solid;
+        padding: 24px;
+
+        form {
+            @include flexCenter();
+            flex-direction: column;
+            align-items: flex-start;
+            border: 1px purple solid;
+            padding: 24px;
+        }
+    }
+}
