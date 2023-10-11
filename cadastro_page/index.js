@@ -1,4 +1,47 @@
-class ValidaCPF {
+class ValidaFormulario {
+    constructor() {
+        this.formulario = document.querySelector('.formulario');
+        this.cpfBox = document.querySelector('.ipn-cpf').value;
+        this.p = document.createElement('p');
+        this.event();
+    }
+    
+    event() {
+        const enviar = document.querySelector('.enviar');
+        enviar.addEventListener('click', e => {
+            e.preventDefault();
+            let formValido = true;
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    formValido = false
+                }
+            })
+            if (formValido) {
+                this.p.innerText = '';
+                this.start();
+            } else {
+                this.criaErroVazio()
+            }
+
+        })
+    }
+
+    criaErroVazio() {
+        this.p.innerText = '*preencha todos os campos';
+        this.p.style.color = 'red'
+        this.formulario.appendChild(this.p)
+    }
+
+    start() {
+        const cpf = new ValidaCpf(this.cpfBox);
+        cpf;
+    }
+}
+//Formatar esse valida para retuornar um valor true 
+class ValidaCpf extends ValidaFormulario {}
+
+class ValidaCpf {
     constructor(cpfSujo) {
         this.cpfSujo = cpfSujo;
     }
@@ -49,8 +92,17 @@ class ValidaCPF {
 }
 
 
-const enviar = () => {
-    const cpfBoxValue = document.querySelector('.ipn-cpf').value;
-    const cpf = new ValidaCPF(cpfBoxValue);
-    cpf.valida = cpf.cpfSujo;
-}
+const valida = new ValidaFormulario();
+/*
+verificar se os campos n estão vazios
+nome e sobrenome só podem ter letras
+cpf tem que ser válido e ter o tamanho certo
+usuarios só letras ou numeros de 3 a 12 caracteeres
+senha de 6 a 12 caracteres
+as senhas precisam bater
+gerar erro se esses campos não forem preenchidos
+
+
+
+
+*/

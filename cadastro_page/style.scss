@@ -14,6 +14,7 @@
 body {
     @include flexCenter();
     height: 100vh;
+    background: linear-gradient(45deg, #9ff38e, #93a3ff);
 
     .container {
         @include flexCenter();

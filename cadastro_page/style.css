@@ -10,6 +10,7 @@ body {
   justify-content: center;
   gap: 10px;
   height: 100vh;
+  background: linear-gradient(45deg, #9ff38e, #93a3ff);
 }
 body .container {
   display: flex;
