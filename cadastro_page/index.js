@@ -1,14 +1,15 @@
 class ValidaFormulario {
     constructor() {
         this.formulario = document.querySelector('.formulario');
-        this.cpfBox = document.querySelector('.ipn-cpf').value;
+        this.cpfBox = document.querySelector('.ipn-cpf');
         this.p = document.createElement('p');
+        this.enviar = document.querySelector('.enviar');
+        this.validaCPF = new ValidaCpf()
         this.event();
     }
     
     event() {
-        const enviar = document.querySelector('.enviar');
-        enviar.addEventListener('click', e => {
+        this.enviar.addEventListener('click', e => {
             e.preventDefault();
             let formValido = true;
             const inputs = document.querySelectorAll('input');
@@ -33,13 +34,17 @@ class ValidaFormulario {
         this.formulario.appendChild(this.p)
     }
 
+    cpfErro() {
+        this.p.innerText = 'CPF inválido'
+        this.cpfBox.append(this.p)
+    }
+
     start() {
-        const cpf = new ValidaCpf(this.cpfBox);
-        cpf;
+        const cpf = this.cpfBox.value;
+        (this.validaCPF.vetorizaECalcula(cpf))? console.log('deubom'): this.cpfErro();
     }
 }
-//Formatar esse valida para retuornar um valor true 
-class ValidaCpf extends ValidaFormulario {}
+
 
 class ValidaCpf {
     constructor(cpfSujo) {
@@ -54,10 +59,12 @@ class ValidaCpf {
     get valida() {
         return this.cpfSujo;
     }
+    criaErroCPF() {
 
+    }
     verifica(cpfLimpo) {
         if (typeof cpfLimpo !== 'object' || cpfLimpo.length !== 11) {
-            console.log('CPF inválido, digite corretamente');
+            this.criaErro('CPF inválido, digite corretamente');
             return;
         }
         this.vetorizaECalcula(cpfLimpo);
@@ -68,11 +75,12 @@ class ValidaCpf {
         const digitoOne = this.criaDigito([...cpfReduzido]);
         const digitoTwo = this.criaDigito([...cpfReduzido, digitoOne]);
 
-        const resul = [...cpfReduzido, digitoOne, digitoTwo];
+        let resul = [...cpfReduzido, digitoOne, digitoTwo];
+        resul = resul.map(Number).join('');
         if (JSON.stringify(resul) == JSON.stringify(cpf)) {
-            console.log('CPF válido');
+            return true
         } else {
-            console.log('CPF Inválido');
+            return false
         }
     }
 
@@ -89,10 +97,12 @@ class ValidaCpf {
         }
         return resul;
     }
+
 }
 
 
-const valida = new ValidaFormulario();
+const validaForm = new ValidaFormulario();
+
 /*
 verificar se os campos n estão vazios
 nome e sobrenome só podem ter letras
