@@ -18,8 +18,10 @@ body {
 
     .container {
         @include flexCenter();
+        background-color: #9ff38e;
         flex-direction: column;
         border: 1px saddlebrown solid;
+        border-radius: 4vh;
         padding: 24px;
 
         form {

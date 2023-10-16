@@ -3,34 +3,22 @@ class ValidaCpf {
         this.cpfSujo = cpfSujo;
     }
 
-    set valida(valor) {
-        const cpfLimpo = valor.replace(/\D+/g, '').split('').map(Number);
-        this.verifica(cpfLimpo);
-    }
-
-    get valida() {
-        return this.cpfSujo;
-    }
-
-    verifica(cpfLimpo) {
-        if (typeof cpfLimpo !== 'object' || cpfLimpo.length !== 11) {
-            console.log('CPF inválido, digite corretamente');
-            return;
+    validaCPF() {
+        const cpfLimpo = this.cpfSujo.replace(/\D+/g, '').split('').map(Number);
+        console.log(cpfLimpo)
+        if (cpfLimpo.length !== 11 || !this.vetorizaECalcula(cpfLimpo)) {
+            return false; // CPF inválido
         }
-        this.vetorizaECalcula(cpfLimpo);
+        return true; // CPF válido
     }
 
     vetorizaECalcula(cpf) {
         const cpfReduzido = cpf.slice(0, 9); 
         const digitoOne = this.criaDigito([...cpfReduzido]);
         const digitoTwo = this.criaDigito([...cpfReduzido, digitoOne]);
-
         const resul = [...cpfReduzido, digitoOne, digitoTwo];
-        if (JSON.stringify(resul) == JSON.stringify(cpf)) {
-            console.log('CPF válido');
-        } else {
-            console.log('CPF Inválido');
-        }
+
+        return JSON.stringify(resul) == JSON.stringify(cpf)
     }
 
     criaDigito(cpf) {
