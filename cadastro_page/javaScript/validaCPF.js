@@ -5,7 +5,6 @@ class ValidaCpf {
 
     validaCPF() {
         const cpfLimpo = this.cpfSujo.replace(/\D+/g, '').split('').map(Number);
-        console.log(cpfLimpo)
         if (cpfLimpo.length !== 11 || !this.vetorizaECalcula(cpfLimpo)) {
             return false; // CPF inválido
         }
